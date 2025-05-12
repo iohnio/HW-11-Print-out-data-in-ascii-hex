@@ -20,32 +20,28 @@ _start:
 .loop:
     lodsb                 ; load byte into AL, increment ESI
 
-    ; Convert high nibble
+    ; High nibble
     mov ah, al
     shr ah, 4
     mov al, ah
-    call nibble_to_ascii
-    stosb                 ; store ASCII char into [edi], increment EDI
-
-    ; Convert low nibble
-    mov al, byte [esi - 1]
-    and al, 0x0F
-    call nibble_to_ascii
+    call convert_nibble
     stosb
 
-    ; Add a space if more bytes remain
+    ; Low nibble
+    mov al, byte [esi - 1]
+    and al, 0x0F
+    call convert_nibble
+    stosb
+
+    ; Add space if not last byte
     dec ecx
     cmp ecx, 0
-    jl .after_loop
+    je .after_loop
     mov al, ' '
     stosb
     jmp .loop
 
 .after_loop:
-    ; Append newline
-    mov al, 0xA
-    stosb
-
     ; Write outputBuf to stdout
     mov eax, 4        ; sys_write
     mov ebx, 1        ; stdout
@@ -54,14 +50,20 @@ _start:
     sub edx, outputBuf
     int 0x80
 
+    ; Print newline
+    mov eax, 4
+    mov ebx, 1
+    mov ecx, newline
+    mov edx, 1
+    int 0x80
+
     ; Exit
     mov eax, 1
     xor ebx, ebx
     int 0x80
 
-; Subroutine: Convert nibble (0-15) in AL to ASCII
-; Returns ASCII character in AL
-nibble_to_ascii:
+; Subroutine: Convert nibble in AL to ASCII
+convert_nibble:
     cmp al, 9
     jbe .digit
     add al, 'A' - 10
