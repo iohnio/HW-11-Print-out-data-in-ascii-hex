@@ -1,10 +1,10 @@
 # HW#11 Print out data in ascii hex
 
 ## Files Included:
-main.asm: the assembly source code for the version without the subroutine
-main_ec.asm: the assembly source code for the version with the subroutine (extra credit)
-makefile: automates the build process
-README.md: this documentation
+main.asm - the assembly source code for the version without the subroutine  
+main_ec.asm - the assembly source code for the version with the subroutine (extra credit)  
+makefile - automates the build process  
+README.md - this documentation
 
 ## Description:
 This program takes an array of bytes (inputBuf), converts each byte into its two-character ASCII 
