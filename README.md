@@ -29,3 +29,5 @@ To execute the version without the subroutine, run:
 
 To execute the version with the subroutine (extra credit), run:
 ./hw11translate2Ascii_ec
+
+To remove the compiled object files, run: make clean
