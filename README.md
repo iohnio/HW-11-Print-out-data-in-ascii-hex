@@ -1,8 +1,8 @@
-# HW#11 Print out data in ascii hex
+# Print out data in ascii hex
 
 ## Files Included:
 main.asm - the assembly source code for the version without the subroutine  
-main_ec.asm - the assembly source code for the version with the subroutine (extra credit)  
+main_ec.asm - the assembly source code for the version with the subroutine
 makefile - automates the build process  
 README.md - this documentation
 
@@ -27,7 +27,7 @@ make
 To execute the version without the subroutine, run:
 ./hw11translate2Ascii
 
-To execute the version with the subroutine (extra credit), run:
+To execute the version with the subroutine, run:
 ./hw11translate2Ascii_ec
 
 To remove the compiled object files, run: make clean
